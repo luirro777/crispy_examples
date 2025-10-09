@@ -1,0 +1,67 @@
+# -------------------------------------------------------------------------
+# 1. Entornos Virtuales y Dependencias
+# -------------------------------------------------------------------------
+
+# Ignora todo el directorio del entorno virtual
+venv/
+env/
+.venv/
+.env
+
+# Archivos de caché de Python (compilados)
+__pycache__/
+*.pyc
+
+# Directorio de instalaciones de pip (si se usan caches)
+.pip-cache/
+
+# -------------------------------------------------------------------------
+# 2. Archivos Generados por Django
+# -------------------------------------------------------------------------
+
+# Base de datos SQLite local (¡MUY IMPORTANTE!)
+db.sqlite3
+
+# Archivos de la carpeta 'media' (archivos subidos por usuarios)
+# La carpeta 'media' debe estar vacía en el repo y se debe sincronizar aparte.
+/media/
+
+# Archivos estáticos recolectados con 'python manage.py collectstatic'
+# Estos se generan en el servidor.
+/staticfiles/
+# Si usas un nombre diferente, cámbialo, e.g., /static-root/
+
+# -------------------------------------------------------------------------
+# 3. Configuraciones Sensibles y Secretos
+# -------------------------------------------------------------------------
+
+# Variables de entorno/configuración (e.g., SECRET_KEY, credenciales de DB)
+# ¡NUNCA subas secretos a Git!
+*.log
+*.ini
+*.bak
+*.yaml
+
+# -------------------------------------------------------------------------
+# 4. Archivos Específicos del IDE/SO
+# -------------------------------------------------------------------------
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# JetBrains IDEs (PyCharm, WebStorm, etc.)
+.idea/
+
+# VS Code
+.vscode/
+
+# -------------------------------------------------------------------------
+# 5. Misceláneos
+# -------------------------------------------------------------------------
+
+# Resultados de cobertura de pruebas
+.coverage
+htmlcov/

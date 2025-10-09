@@ -1,0 +1,10 @@
+{% extends "courses/base.html" %}
+{% load crispy_forms_tags %}
+{% load bootstrap4 %}
+{% block content %}
+  <h2>Accordion (crispy)</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% crispy form %}
+  </form>
+{% endblock %}

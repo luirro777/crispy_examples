@@ -1,0 +1,11 @@
+{% extends "courses/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <h2>Truco Fieldset</h2>
+  <form method="post">
+    {% csrf_token %}
+    {% crispy form %}
+    <a href="{% url 'courses:list' %}" class="btn btn-outline-secondary">Cancelar</a>
+  </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% load bootstrap4 %}
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Cursos{% endblock %}</title>
+    {% bootstrap_css %}
+     {% bootstrap_javascript jquery='full' %}
+  </head>
+  <body class="bg-light">
+    <div class="container py-4">
+      {% bootstrap_messages %}
+      {% block content %}{% endblock %}
+    </div>    
+  </body>
+</html>

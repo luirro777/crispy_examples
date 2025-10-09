@@ -1,0 +1,15 @@
+
+{% extends "courses/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ object|yesno:"Editar,Nuevo" }} curso (tabs){% endblock %}
+
+{% block content %}
+  <h2 class="mb-4">{{ object|yesno:"Editar,Nuevo" }} curso <small class="text-muted">pestañas</small></h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {% crispy form %}
+    <a href="{% url 'courses:list' %}" class="btn btn-outline-secondary ml-2">Cancelar</a>
+  </form>
+{% endblock %}
