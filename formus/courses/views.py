@@ -1,8 +1,12 @@
 # courses/views.py
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .models import Course
 from .forms import CourseForm, CourseColumnForm, CourseHelpForm, CourseAccordionForm, CourseTabForm, CourseFieldsetForm
+
+from django.http import HttpResponse
+from weasyprint import HTML
+from django.template.loader import render_to_string
 
 class CourseListView(ListView):
     model = Course
@@ -68,3 +72,19 @@ class CourseFieldsetCreateView(CreateView):
     template_name = "courses/course_fieldset.html"
     success_url = reverse_lazy("courses:list")
 
+class CoursePDFView(DetailView):
+    model = Course
+    template_name = "courses/course_pdf.html"   # solo HTML normal
+    context_object_name = "course"
+
+    def render_to_response(self, context, **response_kwargs):
+        html_string = render_to_string(
+            self.template_name,
+            context,
+            request=self.request
+        )
+        pdf_file = HTML(string=html_string, base_url=self.request.build_absolute_uri()).write_pdf()
+        response = HttpResponse(pdf_file, content_type="application/pdf")
+        filename = f"{self.object.code or 'curso'}.pdf"
+        response["Content-Disposition"] = f'attachment; filename="{filename}"'
+        return response

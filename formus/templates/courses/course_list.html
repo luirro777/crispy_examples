@@ -14,6 +14,9 @@
         <strong>{{ course.title }}</strong><br>
         <small>{{ course.description|truncatewords:12 }}</small>
       </a>
+      <a href="{% url 'courses:pdf' course.pk %}" class="btn btn-sm btn-outline-danger">
+  📄    PDF
+      </a>
     {% empty %}
       <div class="list-group-item text-muted">Sin cursos aún.</div>
     {% endfor %}

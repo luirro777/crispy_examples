@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CourseListView, CourseCreateView, CourseUpdateView, CourseColumnCreateView, CourseHelpView, CourseAccordionCreateView, CourseTabCreateView, CourseTabUpdateView,  CourseFieldsetCreateView
+from .views import CourseListView, CourseCreateView, CourseUpdateView, CourseColumnCreateView, CourseHelpView, CourseAccordionCreateView, CourseTabCreateView, CourseTabUpdateView,  CourseFieldsetCreateView, CoursePDFView
 
 app_name = "courses"
 
@@ -14,5 +14,6 @@ urlpatterns = [
     path("tabs/new/", CourseTabCreateView.as_view(), name="tabs_create"),
     path("tabs/<int:pk>/edit/", CourseTabUpdateView.as_view(), name="tabs_update"),    
     path("fieldset/new/", CourseFieldsetCreateView.as_view(), name="fieldset_create"),
+    path("<int:pk>/pdf/", CoursePDFView.as_view(), name="pdf"),
     
 ]
