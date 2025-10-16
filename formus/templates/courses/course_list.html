@@ -8,6 +8,9 @@
   <a class="btn btn-primary mb-3" href="{% url 'courses:tabs_create' %}">Nuevo curso (Tabs)</a>
   <a class="btn btn-primary mb-3" href="{% url 'courses:help_create' %}">Nuevo curso (Help text)</a>
   <a class="btn btn-primary mb-3" href="{% url 'courses:fieldset_create' %}">Nuevo curso (Fieldset)</a>
+  <a class="btn btn-outline-info mb-3" href="{% url 'courses:stats' %}">
+  📊 Ver estadísticas
+  </a>
   <div class="list-group">
     {% for course in courses %}
       <a href="{% url 'courses:update' course.pk %}" class="list-group-item list-group-item-action">

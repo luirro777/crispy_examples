@@ -1,12 +1,13 @@
 # courses/views.py
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, TemplateView
 from .models import Course
 from .forms import CourseForm, CourseColumnForm, CourseHelpForm, CourseAccordionForm, CourseTabForm, CourseFieldsetForm
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from weasyprint import HTML
 from django.template.loader import render_to_string
+from .stats import courses_per_day
 
 class CourseListView(ListView):
     model = Course
@@ -88,3 +89,11 @@ class CoursePDFView(DetailView):
         filename = f"{self.object.code or 'curso'}.pdf"
         response["Content-Disposition"] = f'attachment; filename="{filename}"'
         return response
+    
+def courses_per_day_json(request):
+    """Función llamada por Chart.js"""
+    days = int(request.GET.get('days', 30))
+    return JsonResponse({'data': courses_per_day(days)})
+
+class StatsView(TemplateView):
+    template_name = 'courses/stats.html'
